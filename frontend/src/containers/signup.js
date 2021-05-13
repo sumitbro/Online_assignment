@@ -8,14 +8,13 @@ import { signup } from '../actions/auth';
 const Signup = ({ signup, isAuthenticated }) => {
     const [accountCreated, setAccountCreated] = useState(false);
     const [formData, setFormData] = useState({
-        first_name: '',
-        last_name: '',
+        username:'',
         email: '',
         password: '',
         re_password: ''
     });
 
-    const { first_name, last_name, email, password, re_password } = formData;
+    const { username, email, password, re_password } = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -23,7 +22,7 @@ const Signup = ({ signup, isAuthenticated }) => {
         e.preventDefault();
 
         if (password === re_password) {
-            signup(first_name, last_name, email, password, re_password);
+            signup(username, email, password, re_password);
             setAccountCreated(true);
         }
     };
@@ -49,25 +48,14 @@ const Signup = ({ signup, isAuthenticated }) => {
                 icon='user'
                 iconPosition='left'
                 type="text"
-                placeholder='First Name'
-                name="first_name"
-                value= {first_name}
+                placeholder='Username'
+                name="username"
+                value= {username}
                 onChange={e=> onChange(e)}
                 required
               />
 
-            <Form.Input
-                fluid
-                icon='user'
-                iconPosition='left'
-                type="text"
-                placeholder='Last Name'
-                name="last_name"
-                value= {last_name}
-                onChange={e=> onChange(e)}
-                required
-              />
-              
+               
 
               
               <Form.Input
